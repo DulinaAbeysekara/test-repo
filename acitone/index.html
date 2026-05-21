@@ -1,0 +1,251 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="theme-color" content="#ffffff" />
+    <title>Lanka Minerals - Product Specification</title>
+
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=JetBrains+Mono:wght@500;700&display=swap"
+      rel="stylesheet"
+    />
+
+    <style>
+      :root {
+        --bg: #f9fafb;
+        --surface: #ffffff;
+        --text-main: #111827;
+        --text-label: #6b7280;
+        --accent: #0f172a;
+        --border: #f3f4f6;
+        --safe-area-bottom: env(safe-area-inset-bottom, 20px);
+      }
+
+      * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+      }
+
+      body {
+        background: var(--bg);
+        color: var(--text-main);
+        font-family: "Inter", sans-serif;
+        -webkit-font-smoothing: antialiased;
+        padding-bottom: 100px; /* Space for the sticky button */
+      }
+
+      /* Minimalist Header */
+      header {
+        background: var(--surface);
+        padding: 24px 20px;
+        border-bottom: 1px solid var(--border);
+        position: sticky;
+        top: 0;
+        z-index: 10;
+      }
+
+      .brand {
+        font-size: 12px;
+        text-transform: uppercase;
+        letter-spacing: 1.5px;
+        color: var(--text-label);
+        font-weight: 600;
+        margin-bottom: 8px;
+      }
+
+      h1 {
+        font-size: 28px;
+        font-weight: 600;
+        letter-spacing: -0.5px;
+      }
+
+      p.description {
+        font-size: 15px;
+        color: var(--text-label);
+        margin-top: 12px;
+        max-width: 600px;
+        line-height: 1.6;
+      }
+
+      /* Main Content Area */
+      .container {
+        max-width: 800px;
+        margin: 0 auto;
+        padding: 40px 20px;
+      }
+
+      .spec-group {
+        margin-bottom: 48px;
+      }
+
+      .spec-group h2 {
+        font-size: 14px;
+        text-transform: uppercase;
+        letter-spacing: 1px;
+        color: var(--text-label);
+        margin-bottom: 16px;
+        padding-bottom: 8px;
+        border-bottom: 2px solid var(--text-main);
+        display: inline-block;
+      }
+
+      /* The New "Tech Spec" List Layout */
+      .spec-list {
+        display: flex;
+        flex-direction: column;
+      }
+
+      .spec-row {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        padding: 16px 0;
+        border-bottom: 1px solid var(--border);
+        gap: 20px;
+      }
+
+      .spec-row:last-child {
+        border-bottom: none;
+      }
+
+      /* Labels are soft and readable */
+      .spec-label {
+        font-size: 15px;
+        color: var(--text-main);
+        flex: 1;
+      }
+
+      /* Data is precise, monospace, and distinct */
+      .spec-value {
+        font-family: "JetBrains Mono", monospace;
+        font-size: 14px;
+        font-weight: 500;
+        color: var(--accent);
+        text-align: right;
+        background: #f1f5f9;
+        padding: 6px 12px;
+        border-radius: 6px;
+      }
+
+      /* Sticky Bottom Action Bar */
+      .action-bar {
+        position: fixed;
+        bottom: 0;
+        left: 0;
+        right: 0;
+        background: rgba(255, 255, 255, 0.9);
+        backdrop-filter: blur(10px);
+        -webkit-backdrop-filter: blur(10px);
+        padding: 20px 20px calc(20px + var(--safe-area-bottom));
+        border-top: 1px solid var(--border);
+        display: flex;
+        justify-content: center;
+        z-index: 100;
+      }
+
+      .download-btn {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        gap: 10px;
+        width: 100%;
+        max-width: 400px;
+        padding: 16px 24px;
+        background: var(--accent);
+        color: white;
+        text-decoration: none;
+        border-radius: 12px;
+        font-weight: 500;
+        font-size: 15px;
+        transition: transform 0.1s ease;
+      }
+
+      .download-btn:active {
+        transform: scale(0.98);
+      }
+
+      .download-icon {
+        width: 18px;
+        height: 18px;
+        fill: none;
+        stroke: currentColor;
+        stroke-width: 2;
+      }
+
+      @media (max-width: 600px) {
+        .spec-row {
+          flex-direction: column;
+          align-items: flex-start;
+          gap: 8px;
+        }
+        .spec-value {
+          align-self: stretch;
+          text-align: left;
+        }
+      }
+    </style>
+  </head>
+
+  <body>
+    <header>
+      <div class="brand">Lanka Minerals & Chemicals</div>
+      <h1 id="dynamic-title">Loading...</h1>
+      <p id="dynamic-description" class="description"></p>
+    </header>
+
+    <div class="container">
+      <div class="spec-group">
+        <h2>Chemical Analysis</h2>
+        <div id="chemical-list" class="spec-list"></div>
+      </div>
+
+      <div class="spec-group">
+        <h2>Physical Properties</h2>
+        <div id="physical-list" class="spec-list"></div>
+      </div>
+    </div>
+
+    <div class="action-bar">
+      <a href="datasheet.pdf" class="download-btn">
+        <svg class="download-icon" viewBox="0 0 24 24">
+          <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path>
+          <polyline points="7 10 12 15 17 10"></polyline>
+          <line x1="12" y1="15" x2="12" y2="3"></line>
+        </svg>
+        Download Datasheet
+      </a>
+    </div>
+
+    <script src="data.js"></script>
+
+    <script>
+      // Load Header Data
+      document.getElementById("dynamic-title").textContent = productData.title;
+      document.getElementById("dynamic-description").textContent =
+        productData.description;
+      document.title = productData.title;
+
+      // The new function builds sleek Divs instead of bulky Table Rows
+      function buildSpecList(containerId, dataArray) {
+        const container = document.getElementById(containerId);
+
+        dataArray.forEach((item) => {
+          const row = document.createElement("div");
+          row.className = "spec-row";
+          row.innerHTML = `
+          <div class="spec-label">${item.property}</div>
+          <div class="spec-value">${item.specification}</div>
+        `;
+          container.appendChild(row);
+        });
+      }
+
+      buildSpecList("chemical-list", productData.chemicalAnalysis);
+      buildSpecList("physical-list", productData.physicalProperties);
+    </script>
+  </body>
+</html>
